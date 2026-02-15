@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # asssignment_01
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# CSE489-APP-DEV
+All the assignments and projects for CSE489 course.
+>>>>>>> 9029c9acba56f2db64abbe2a2e9905b0ba10134f
