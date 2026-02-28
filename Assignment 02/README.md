@@ -1,16 +1,19 @@
 # assignment_02
 
-A new Flutter project.
+This is the assignment 02 of CSE489, Brac University
 
-## Getting Started
+This project is a Flutter-based mobile application that demonstrates:
 
-This project is a starting point for a Flutter application.
+Navigation Drawer implementation
 
-A few resources to get you started if this is your first Flutter project:
+Custom Broadcast Receiver simulation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+System Battery Broadcast
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Image scaling with pinch gesture
+
+Video playback using Media Player
+
+Audio playback using Media Player
+
+The application follows a modular screen-based architecture.
