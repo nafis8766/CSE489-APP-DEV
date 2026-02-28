@@ -1,4 +1,4 @@
-# assignment_02
+# Assignment_02
 
 This is the assignment 02 of CSE489, Brac University
 
