@@ -3,65 +3,97 @@ import 'broadcast_input_screen.dart';
 import 'package:battery_plus/battery_plus.dart';
 
 class BroadcastScreen extends StatefulWidget {
+  const BroadcastScreen({super.key});
+
   @override
-  _BroadcastScreenState createState() => _BroadcastScreenState();
+  State<BroadcastScreen> createState() => _BroadcastScreenState();
 }
 
 class _BroadcastScreenState extends State<BroadcastScreen> {
 
   String selectedOption = "Custom Broadcast Receiver";
-  final battery = Battery();
+  final Battery battery = Battery();
   String batteryLevel = "";
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Center(
+            child: SizedBox(
+              width: constraints.maxWidth > 600 ? 400 : 300,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
 
-          DropdownButton<String>(
-            value: selectedOption,
-            items: [
-              "Custom Broadcast Receiver",
-              "System Battery Notification Receiver"
-            ].map((value) {
-              return DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                selectedOption = value!;
-              });
-            },
-          ),
+                    DropdownButton<String>(
+                      isExpanded: true,
+                      value: selectedOption,
+                      items: [
+                        "Custom Broadcast Receiver",
+                        "System Battery Notification Receiver"
+                      ].map((value) {
+                        return DropdownMenuItem(
+                          value: value,
+                          child: Text(
+                            value,
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOption = value!;
+                        });
+                      },
+                    ),
 
-          SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-          ElevatedButton(
-            onPressed: () async {
+                    ElevatedButton(
+                      onPressed: () async {
 
-              if (selectedOption == "Custom Broadcast Receiver") {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => BroadcastInputScreen()),
-                );
-              } else {
-                final level = await battery.batteryLevel;
-                setState(() {
-                  batteryLevel = "Battery: $level%";
-                });
-              }
-            },
-            child: Text("Proceed"),
-          ),
+                        if (selectedOption ==
+                            "Custom Broadcast Receiver") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => BroadcastInputScreen(),
+                            ),
+                          );
+                        } else {
+                          final level =
+                          await battery.batteryLevel;
+                          setState(() {
+                            batteryLevel =
+                            "Battery: $level%";
+                          });
+                        }
+                      },
+                      child: const Text("Proceed"),
+                    ),
 
-          SizedBox(height: 20),
-          Text(batteryLevel),
-        ],
+                    const SizedBox(height: 20),
+
+                    if (batteryLevel.isNotEmpty)
+                      Text(
+                        batteryLevel,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
