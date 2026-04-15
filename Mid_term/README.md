@@ -1,16 +1,137 @@
-# lab_exam
+# Smart Geo-Tagged Landmarks App
 
-A new Flutter project.
+## 1. Project Overview
 
-## Getting Started
+This project is a Flutter-based Android mobile application developed for the CSE 489 Lab Exam. The application interacts with a faculty-provided REST API to manage and visualize geo-tagged landmarks. Users can view landmarks, visit them using GPS location, add new landmarks with images, and use the application even in offline scenarios.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 2. Features Implemented
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Map View
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Displays all landmarks on an interactive map centered on Bangladesh
+* Markers represent each landmark using latitude and longitude
+* Marker color reflects score (low to high)
+* Clicking a marker shows title and score
+
+### Landmarks List
+
+* Fetches and displays landmarks from API
+* Shows title, image, and score
+* Supports sorting by score
+* Supports filtering by minimum score
+
+### Visit Feature
+
+* Allows users to visit a landmark
+* Fetches current GPS location
+* Sends visit request to API
+* Displays calculated distance returned from server
+* Supports offline visit queuing
+
+### Activity (Visit History)
+
+* Displays previously visited landmarks
+* Shows landmark name, visit time, and distance
+
+### Add Landmark
+
+* Users can create a new landmark
+* Inputs include title, GPS location, and image
+* Image is uploaded using multipart/form-data as required by API
+
+### Soft Delete Handling
+
+* Deleted landmarks are not shown in the list
+* App handles dynamic data changes without crashing
+
+### Offline Support
+
+* Landmarks are cached locally using Hive
+* Cached data is shown when internet is unavailable
+* Visit requests are stored offline and synced later when connection is restored
+
+### Error Handling
+
+* Displays success messages using Snackbar
+* Handles API errors, network issues, and permission errors gracefully
+
+---
+
+## 3. API Usage
+
+The application uses the faculty-provided REST API:
+
+Base URL:
+https://labs.anontech.info/cse489/exm3/api.php
+
+Endpoints used:
+
+* GET: action=get_landmarks
+* POST: action=visit_landmark
+* POST: action=create_landmark
+* POST: action=delete_landmark
+* POST: action=restore_landmark
+
+Each request includes a unique student API key.
+
+All dynamic values such as score, distance, and visit count are calculated by the server.
+
+---
+
+## 4. Offline Strategy
+
+* Hive is used for local data storage
+* Landmarks fetched from API are cached locally
+* When offline:
+
+  * Cached landmarks are displayed
+  * Visit requests are stored in a queue
+* When internet is restored:
+
+  * Queued visit requests are automatically synchronized with the server
+
+Note:
+Map tiles may not load offline as they depend on external tile services.
+
+---
+
+## 5. Architecture Used
+
+The application follows a simple layered architecture:
+
+* UI Layer: Screens and widgets (Map, List, Add, Activity)
+* State Management: Provider
+* Data Layer:
+
+  * API Service (HTTP requests)
+  * Local Storage (Hive)
+
+This structure ensures separation of concerns and maintainability.
+
+---
+
+## 6. Challenges Faced
+
+* Handling image upload using multipart/form-data instead of JSON
+* Managing offline caching and synchronization
+* Dealing with relative image paths returned by API
+* Implementing GPS-based location features
+* Ensuring smooth UI updates with asynchronous API calls
+
+---
+
+## 7. Remarks
+
+* The application fully depends on the provided REST API for all dynamic data.
+* Score values are computed by the server and may be negative depending on activity.
+* OpenStreetMap is used for map visualization to avoid API key and billing requirements.
+* Image URLs from API are converted to full URLs before displaying.
+* Offline support ensures usability even without internet, though map tiles may not load offline.
+
+---
+
+## 8. Conclusion
+
+This application demonstrates the integration of REST APIs, location services, offline data handling, and user interaction in a complete mobile application. It fulfills all core requirements of the assignment and ensures a smooth user experience both online and offline.
