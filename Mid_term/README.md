@@ -112,26 +112,6 @@ This structure ensures separation of concerns and maintainability.
 
 ---
 
-## 6. Challenges Faced
-
-* Handling image upload using multipart/form-data instead of JSON
-* Managing offline caching and synchronization
-* Dealing with relative image paths returned by API
-* Implementing GPS-based location features
-* Ensuring smooth UI updates with asynchronous API calls
-
----
-
-## 7. Remarks
-
-* The application fully depends on the provided REST API for all dynamic data.
-* Score values are computed by the server and may be negative depending on activity.
-* OpenStreetMap is used for map visualization to avoid API key and billing requirements.
-* Image URLs from API are converted to full URLs before displaying.
-* Offline support ensures usability even without internet, though map tiles may not load offline.
-
----
-
-## 8. Conclusion
+## 6. Conclusion
 
 This application demonstrates the integration of REST APIs, location services, offline data handling, and user interaction in a complete mobile application. It fulfills all core requirements of the assignment and ensures a smooth user experience both online and offline.
