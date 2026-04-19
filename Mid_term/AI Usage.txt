@@ -1,0 +1,16 @@
+1. Concept Clarification
+
+AI was occasionally used to reinforce understanding of:
+
+REST API request handling
+Offline data caching and synchronization logic
+Proper usage of certain Flutter packages
+
+2. Debugging Support
+
+AI was used to identify and resolve specific issues such as:
+
+Handling relative image URLs returned by the API
+Fixing errors related to HTTP requests and responses
+Debugging multipart/form-data image upload
+Resolving minor UI and state management issues
